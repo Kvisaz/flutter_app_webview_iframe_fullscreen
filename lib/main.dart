@@ -72,18 +72,16 @@ class _WebViewScreenState extends State<WebViewScreen> {
         justify-content: center;
         background-color: #f0f0f0;
       }
-      iframe {
-        width: 80%;
-        height: 80%;
-        border: none;
-      }
     </style>
   </head>
   <body>
-    <iframe 
-    allowfullscreen 
-    allow="fullscreen; autoplay"
-    src="https://www.youtube.com/embed/dUsP6BdbDNM?autoplay=1&enablejsapi=1&origin=http%3A%2F%2Flocalhost%3A8083&widgetid=1" />
+  <iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/aBcH4on5WVc?si=9a4uoTAapQKSgTTd" 
+  title="YouTube video player" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+  referrerpolicy="strict-origin-when-cross-origin" 
+  allowfullscreen></iframe>
   </body>
   </html>
   ''';
@@ -93,60 +91,44 @@ class _WebViewScreenState extends State<WebViewScreen> {
     return Scaffold(
       body: SafeArea(
         child: InAppWebView(
-          initialData: InAppWebViewInitialData(
-            data: htmlContentYoutube,
-            baseUrl: WebUri('https://qa-landing.novakidschool.com/'),
-            mimeType: 'text/html',
-            encoding: 'utf-8',
-          ),
-          // initialData: InAppWebViewInitialData(
-          //   data: htmlContentH5p,
-          //   baseUrl: WebUri('https://qa-landing.novakidschool.com/'),
-          //   mimeType: 'text/html',
-          //   encoding: 'utf-8',
-          // ),
-          // initialUrlRequest: URLRequest(
-          //   url: WebUri(
-          //       'https://qa-landing.novakidschool.com/h5p/wp-admin/admin-ajax.php?action=h5p_embed&id=8'
-          //       // 'https://kvisaz.com'
-          //       ),
-          // ),
-          initialSettings: InAppWebViewSettings(
-            javaScriptEnabled: true,
-            mediaPlaybackRequiresUserGesture: false,
-            useWideViewPort: true,
-            loadWithOverviewMode: true,
-            builtInZoomControls: true,
-            domStorageEnabled: true,
-            displayZoomControls: false,
-            thirdPartyCookiesEnabled: true,
-            allowsInlineMediaPlayback: true,
-            allowsAirPlayForMediaPlayback: false,
-            allowsPictureInPictureMediaPlayback: false,
-          ),
-          onPermissionRequest: (controller, requests) async {
-            return PermissionResponse(
-              resources: requests.resources,
-              action: PermissionResponseAction.GRANT,
-            );
-          },
-          onEnterFullscreen: (controller) {
-            // Устанавливаем полноэкранный режим
-            SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-            SystemChrome.setPreferredOrientations([
-              DeviceOrientation.landscapeLeft,
-              DeviceOrientation.landscapeRight,
-            ]);
-          },
-          onExitFullscreen: (controller) {
-            // Возвращаем стандартный режим
-            SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-            SystemChrome.setPreferredOrientations([
-              DeviceOrientation.portraitUp,
-              DeviceOrientation.portraitDown,
-            ]);
-          },
-        ),
+            // initialData: InAppWebViewInitialData(
+            //   data: htmlContentYoutube,
+            //   baseUrl: WebUri('https://qa-landing.novakidschool.com/'),
+            //   mimeType: 'text/html',
+            //   encoding: 'utf-8',
+            // ),
+            initialData: InAppWebViewInitialData(
+              data: htmlContentYoutube,
+              baseUrl: WebUri('https://qa-landing.novakidschool.com/'),
+              mimeType: 'text/html',
+              encoding: 'utf-8',
+            ),
+            initialSettings: InAppWebViewSettings(
+              javaScriptEnabled: true,
+              mediaPlaybackRequiresUserGesture: false,
+              useWideViewPort: true,
+              loadWithOverviewMode: true,
+              builtInZoomControls: true,
+              domStorageEnabled: true,
+              displayZoomControls: false,
+              thirdPartyCookiesEnabled: true,
+              allowsInlineMediaPlayback: true,
+              allowsAirPlayForMediaPlayback: false,
+              allowsPictureInPictureMediaPlayback: false,
+            ),
+            onPermissionRequest: (controller, requests) async {
+              return PermissionResponse(
+                resources: requests.resources,
+                action: PermissionResponseAction.GRANT,
+              );
+            },
+            onReceivedError: (controller, request, error) {
+              print(
+                  "webview console error === ${error.type} ${error.description}");
+            },
+            onConsoleMessage: (controller, consoleMessage) {
+              print("webview console === ${consoleMessage.message}");
+            }),
       ),
     );
   }
