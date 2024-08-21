@@ -22,11 +22,19 @@ html {
     justify-content: center;
 }
 
+.warning {
+    padding: 0.2em;
+    background-color: pink;
+    border-radius: 0.5em;
+    line-height: 1.5em;
+}
+
 .links {
     margin: 0 auto;
     width: 80%;
     align-items: normal;
     justify-content: normal;
+    /* line-height: 2em; */
 }
 
 .title {
