@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fullscreen Rectangles</title>
+    <style>
+        .rectangle {
+            width: 300px;
+            height: 200px;
+            margin: 20px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+    <div class="rectangle" style="background-color: #ff6b6b;">
+        <button onclick="toggleFullscreen(this.parentElement)">fullscreen</button>
+    </div>
+    <div class="rectangle" style="background-color: #4ecdc4;">
+        <button onclick="toggleFullscreen(this.parentElement)">fullscreen</button>
+    </div>
+    <div class="rectangle" style="background-color: #45b7d1;">
+        <button onclick="toggleFullscreen(this.parentElement)">fullscreen</button>
+    </div>
+
+    <script>
+        function toggleFullscreen(element) {
+            if (!document.fullscreenElement) {
+                if (element.requestFullscreen) {
+                    element.requestFullscreen();
+                } else if (element.mozRequestFullScreen) { // Firefox
+                    element.mozRequestFullScreen();
+                } else if (element.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                    element.webkitRequestFullscreen();
+                } else if (element.msRequestFullscreen) { // IE/Edge
+                    element.msRequestFullscreen();
+                }
+                element.classList.add('fullscreen');
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.mozCancelFullScreen) { // Firefox
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) { // Chrome, Safari and Opera
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) { // IE/Edge
+                    document.msExitFullscreen();
+                }
+                element.classList.remove('fullscreen');
+            }
+        }
+
+        document.addEventListener('fullscreenchange', function() {
+            if (!document.fullscreenElement) {
+                document.querySelector('.fullscreen').classList.remove('fullscreen');
+            }
+        });
+    </script>
+</body>
+</html>
