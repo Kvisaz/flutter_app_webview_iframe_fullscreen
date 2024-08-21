@@ -22,6 +22,15 @@ html {
     justify-content: center;
 }
 
+.size640x480 {
+    width: 640px;
+    height: 480px;
+}
+
+.centered {
+    margin: 0 auto;
+}
+
 .warning {
     padding: 0.2em;
     background-color: pink;
