@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter/services.dart';
+import 'dart:math';
+
+const testUrl =
+    'https://kvisaz.github.io/flutter_app_webview_iframe_fullscreen/index.html';
 
 void main() {
   runApp(const SimpleWebViewApp());
@@ -92,8 +96,7 @@ class _WebViewScreenState extends State<WebViewScreen> {
       body: SafeArea(
         child: InAppWebView(
             initialUrlRequest: URLRequest(
-              url: WebUri(
-                  'https://kvisaz.github.io/flutter_app_webview_iframe_fullscreen/index.html'),
+              url: WebUri(getCachebustedUrl(testUrl)),
             ),
             // initialData: InAppWebViewInitialData(
             //   data: htmlContentYoutube,
@@ -136,4 +139,10 @@ class _WebViewScreenState extends State<WebViewScreen> {
       ),
     );
   }
+}
+
+String getCachebustedUrl(String originalUrl) {
+  final random = Random();
+  final randomNumber = random.nextInt(1000000);
+  return '$originalUrl?cache_buster=$randomNumber';
 }
