@@ -1,0 +1,56 @@
+body,
+html {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    height: 100%;
+    margin: 0;
+}
+
+.back {
+    position: absolute;
+    background-color: rgb(186, 131, 58);
+    color: aliceblue;
+    border-radius: 1em;
+    top: 0.5em;
+    left: 0.5em;
+    padding: 1em;
+}
+
+.wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.links {
+    margin: 0 auto;
+    width: 80%;
+    align-items: normal;
+    justify-content: normal;
+}
+
+.title {
+    margin: 0;
+    padding: 1em 0;
+    text-align: center;
+    background: #93b6fa;
+}
+
+.title p {
+    margin: 0;
+    font-size: 0.75em;
+}
+
+.copy {
+    border-radius: 0.5em;
+    margin-top: 0.5em;
+    font-size: 0.75em;
+    width: 50em;
+    text-align: center;
+    padding: 0.5em;
+    height: 1.5em;
+}
+
+iframe {
+    border: 4px dashed darkblue;
+}

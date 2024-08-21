@@ -91,18 +91,22 @@ class _WebViewScreenState extends State<WebViewScreen> {
     return Scaffold(
       body: SafeArea(
         child: InAppWebView(
+            initialUrlRequest: URLRequest(
+              url: WebUri(
+                  'https://kvisaz.github.io/flutter_app_webview_iframe_fullscreen/index.html'),
+            ),
             // initialData: InAppWebViewInitialData(
             //   data: htmlContentYoutube,
             //   baseUrl: WebUri('https://qa-landing.novakidschool.com/'),
             //   mimeType: 'text/html',
             //   encoding: 'utf-8',
             // ),
-            initialData: InAppWebViewInitialData(
-              data: htmlContentYoutube,
-              baseUrl: WebUri('https://qa-landing.novakidschool.com/'),
-              mimeType: 'text/html',
-              encoding: 'utf-8',
-            ),
+            // initialData: InAppWebViewInitialData(
+            //   data: htmlContentYoutube,
+            //   baseUrl: WebUri('https://qa-landing.novakidschool.com/'),
+            //   mimeType: 'text/html',
+            //   encoding: 'utf-8',
+            // ),
             initialSettings: InAppWebViewSettings(
               javaScriptEnabled: true,
               mediaPlaybackRequiresUserGesture: false,
