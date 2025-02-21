@@ -40,7 +40,7 @@
               const url = new URL(link.href, window.location.origin);
               url.searchParams.set('cacheBuster', timestamp);
               link.href = url.toString();
-              console.log('Обновленная ссылка:', link.href);
+              console.log('updated link:', link.href);
             });
           } else {
             console.log('links for this selector not found:', selector);
