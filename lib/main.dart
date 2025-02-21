@@ -32,6 +32,8 @@ class WebViewScreen extends StatefulWidget {
 class _WebViewScreenState extends State<WebViewScreen> {
   @override
   Widget build(BuildContext context) {
+    print('updated version');
+
     return Scaffold(
       body: SafeArea(
         child: InAppWebView(
