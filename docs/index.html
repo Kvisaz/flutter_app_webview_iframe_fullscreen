@@ -27,19 +27,27 @@
     <script>
         console.log('current url', window.location.href)
 
-        function addCacheBusterToLinks(){
+        function addCacheBusterToLinks() {
           console.log('addCacheBusterToLinks start');
           const timestamp = new Date().getTime();
-        const links = document.querySelectorAll('a');
-        if(links){
-          console.log('addCacheBusterToLinks links', links);
-          links.forEach(link => {
-            const url = new URL(link.href, window.location.origin);
-            url.searchParams.set('cacheBuster', timestamp);
-            link.href = url.toString();
-          });
+          const linksContainer = document.querySelector('.links');
+          
+          if (linksContainer) {
+            const links = linksContainer.querySelectorAll('a');
+            console.log('Найденные ссылки:', links);
+            
+            links.forEach(link => {
+              console.log('Обработка ссылки:', link.href);
+              const url = new URL(link.href, window.location.origin);
+              url.searchParams.set('cacheBuster', timestamp);
+              link.href = url.toString();
+              console.log('Обновленная ссылка:', link.href);
+            });
+          } else {
+            console.log('Контейнер с классом "links" не найден.');
+          }
         }
-        }
+
         addCacheBusterToLinks();
         
        
