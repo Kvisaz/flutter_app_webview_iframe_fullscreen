@@ -28,12 +28,14 @@
         console.log('current url', window.location.href)
 
         function addCacheBusterToLinks(){
+          console.log('addCacheBusterToLinks start');
           const timestamp = new Date().getTime();
         const links = document.querySelectorAll('a');
         if(links){
+          console.log('addCacheBusterToLinks links', links);
           links.forEach(link => {
             const url = new URL(link.href, window.location.origin);
-            url.searchParams.set('t', timestamp);
+            url.searchParams.set('cacheBuster', timestamp);
             link.href = url.toString();
           });
         }
