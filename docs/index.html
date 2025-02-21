@@ -25,17 +25,22 @@
 
     </div>
     <script>
-        const timestamp = new Date().getTime();
-        const links = document.querySelectorAll('a');
-
-        // Добавляем параметр времени к каждой ссылке
-        links.forEach(link => {
-          const url = new URL(link.href, window.location.origin);
-          url.searchParams.set('t', timestamp);
-          link.href = url.toString();
-        });
-        
         console.log('current url', window.location.href)
+
+        function addCacheBusterToLinks(){
+          const timestamp = new Date().getTime();
+        const links = document.querySelectorAll('a');
+        if(links){
+          links.forEach(link => {
+            const url = new URL(link.href, window.location.origin);
+            url.searchParams.set('t', timestamp);
+            link.href = url.toString();
+          });
+        }
+        }
+        addCacheBusterToLinks();
+        
+       
     </script>
   </body>
   </html>
